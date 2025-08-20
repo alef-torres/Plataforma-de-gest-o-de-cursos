@@ -1,7 +1,9 @@
 package com.desafio.maisPraTi.desafio.configH2;
 
 import com.desafio.maisPraTi.desafio.entities.Aluno;
+import com.desafio.maisPraTi.desafio.entities.Curso;
 import com.desafio.maisPraTi.desafio.repositories.AlunoRepository;
+import com.desafio.maisPraTi.desafio.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private AlunoRepository alunoRepository;
+
+    @Autowired
+    private CursoRepository cursoRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -50,6 +55,27 @@ public class TestConfig implements CommandLineRunner {
                 "999.888.777-66", "1999-11-10", "Pereira", "Lucas", null
         );
 
+        Curso c1 = new Curso(
+                null, "Java Básico", "2023-12-15"
+        );
+
+        Curso c2 = new Curso(
+                null, "Spring Boot Avançado", "2024-06-20"
+        );
+
+        Curso c3 = new Curso(
+                null, "Banco de Dados com PostgreSQL", "2024-08-10"
+        );
+
+        Curso c4 = new Curso(
+                null, "Desenvolvimento Web com React", "2025-02-05"
+        );
+
+        Curso c5 = new Curso(
+                null, "Arquitetura de Microsserviços", "2025-07-30"
+        );
+
+        cursoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5));
         alunoRepository.saveAll(Arrays.asList(a1,a2,a3,a4,a5));
 
 
