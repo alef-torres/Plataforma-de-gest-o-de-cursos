@@ -3,7 +3,9 @@ package com.desafio.maisPraTi.desafio.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_aluno")
@@ -26,6 +28,11 @@ public class Aluno implements Serializable {
     private String complemento;
     private String cidade;
     private String estado;
+
+    @ManyToMany
+    @JoinTable(name = "tb_aluno_cursos", joinColumns = @JoinColumn(name = "aluno_id"),
+            inverseJoinColumns = @JoinColumn(name = "curso_id"))
+    private Set<Curso> cursos = new HashSet<>();
 
     public Aluno() {
     }
@@ -166,6 +173,10 @@ public class Aluno implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Set<Curso> getCursos() {
+        return cursos;
     }
 
     @Override

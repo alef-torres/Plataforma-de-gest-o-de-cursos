@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Set;
 
 @Configuration
 @Profile("test")
@@ -78,6 +79,11 @@ public class TestConfig implements CommandLineRunner {
         cursoRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5));
         alunoRepository.saveAll(Arrays.asList(a1,a2,a3,a4,a5));
 
+        a1.getCursos().add(c1);
+        a1.getCursos().add(c2);
+        a1.getCursos().add(c3);
+
+        alunoRepository.save(a1);
 
     }
 }

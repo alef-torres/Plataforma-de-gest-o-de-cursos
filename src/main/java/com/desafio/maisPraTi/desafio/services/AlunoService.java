@@ -23,4 +23,8 @@ public class AlunoService {
         obj = alunoRepository.findById(id);
         return obj.get();
     }
+
+    public void delete(Long id) {
+        alunoRepository.deleteById(id);
+    }
 }

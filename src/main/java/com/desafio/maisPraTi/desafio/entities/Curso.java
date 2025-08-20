@@ -1,9 +1,12 @@
 package com.desafio.maisPraTi.desafio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_curso")
@@ -14,6 +17,10 @@ public class Curso implements Serializable {
     private Long id;
     private String nome;
     private String dataDeConclusao;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "cursos")
+    private Set<Aluno> alunos = new HashSet<>();
 
     public Curso() {
     }
@@ -46,6 +53,10 @@ public class Curso implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Aluno> getAlunos() {
+        return alunos;
     }
 
     @Override
