@@ -32,4 +32,10 @@ public class AlunoResource {
         alunoService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno obj){
+        obj = alunoService.update(id, obj);
+        return ResponseEntity.noContent().build();
+    }
 }
