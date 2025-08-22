@@ -1,7 +1,7 @@
 package com.desafio.maisPraTi.desafio.services;
 
-import com.desafio.maisPraTi.desafio.entities.Aluno;
-import com.desafio.maisPraTi.desafio.entities.Curso;
+import com.desafio.maisPraTi.desafio.model.entities.Aluno;
+import com.desafio.maisPraTi.desafio.model.entities.Curso;
 import com.desafio.maisPraTi.desafio.repositories.AlunoRepository;
 import com.desafio.maisPraTi.desafio.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.desafio.maisPraTi.desafio.configH2;
 
-import com.desafio.maisPraTi.desafio.entities.Aluno;
-import com.desafio.maisPraTi.desafio.entities.Curso;
+import com.desafio.maisPraTi.desafio.model.entities.Aluno;
+import com.desafio.maisPraTi.desafio.model.entities.Curso;
 import com.desafio.maisPraTi.desafio.repositories.AlunoRepository;
 import com.desafio.maisPraTi.desafio.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Set;
 
 @Configuration
 @Profile("test")

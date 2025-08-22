@@ -1,6 +1,6 @@
 package com.desafio.maisPraTi.desafio.resources;
 
-import com.desafio.maisPraTi.desafio.entities.Curso;
+import com.desafio.maisPraTi.desafio.model.entities.Curso;
 import com.desafio.maisPraTi.desafio.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

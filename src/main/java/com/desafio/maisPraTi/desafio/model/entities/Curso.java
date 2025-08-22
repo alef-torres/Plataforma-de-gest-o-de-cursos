@@ -1,4 +1,4 @@
-package com.desafio.maisPraTi.desafio.entities;
+package com.desafio.maisPraTi.desafio.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
