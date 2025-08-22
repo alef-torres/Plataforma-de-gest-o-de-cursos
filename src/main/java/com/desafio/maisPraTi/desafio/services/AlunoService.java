@@ -1,9 +1,12 @@
 package com.desafio.maisPraTi.desafio.services;
 
 import com.desafio.maisPraTi.desafio.entities.Aluno;
+import com.desafio.maisPraTi.desafio.entities.Curso;
 import com.desafio.maisPraTi.desafio.repositories.AlunoRepository;
+import com.desafio.maisPraTi.desafio.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +15,9 @@ import java.util.Optional;
 public class AlunoService {
 
     @Autowired
-    private AlunoRepository alunoRepository;
+    private  AlunoRepository alunoRepository;
+    @Autowired
+    private CursoRepository cursoRepository;
 
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
@@ -28,6 +33,10 @@ public class AlunoService {
         alunoRepository.deleteById(id);
     }
 
+    public Aluno insert(Aluno obj) {
+        return alunoRepository.save(obj);
+    }
+
     public Aluno update(Long id, Aluno obj) {
         Aluno entidade = alunoRepository.getReferenceById(id);
         updateData(entidade, obj);
@@ -35,7 +44,6 @@ public class AlunoService {
     }
 
     private void updateData(Aluno entidade, Aluno obj) {
-        entidade.setId(obj.getId());
         entidade.setPrimeiroNome(obj.getPrimeiroNome());
         entidade.setUltimoNome(obj.getUltimoNome());
         entidade.setDataNascimento(obj.getDataNascimento());
@@ -50,5 +58,29 @@ public class AlunoService {
         entidade.setComplemento(obj.getComplemento());
         entidade.setCidade(obj.getCidade());
         entidade.setEstado(obj.getEstado());
+    }
+
+    @Transactional
+    public Aluno adicionarCurso(Long alunoId, Long cursoId) {
+        Aluno aluno = alunoRepository.findById(alunoId)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+
+        Curso curso = cursoRepository.findById(cursoId)
+                .orElseThrow(() -> new RuntimeException("Curso não encontrado"));
+
+        aluno.getCursos().add(curso);
+        return alunoRepository.save(aluno);
+    }
+
+    @Transactional
+    public Aluno removerCurso(Long alunoId, Long cursoId) {
+        Aluno aluno = alunoRepository.findById(alunoId)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+
+        Curso curso = cursoRepository.findById(cursoId)
+                .orElseThrow(() -> new RuntimeException("Curso não encontrado"));
+
+        aluno.getCursos().remove(curso);
+        return alunoRepository.save(aluno);
     }
 }

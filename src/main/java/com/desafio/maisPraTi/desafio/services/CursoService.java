@@ -23,4 +23,24 @@ public class CursoService {
         obj = cursoRepository.findById(id);
         return obj.get();
     }
+
+    public void delete(Long id) {
+        cursoRepository.deleteById(id);
+    }
+
+    public Curso insert(Curso obj) {
+        return cursoRepository.save(obj);
+    }
+
+    public Curso update(Long id, Curso obj){
+        Curso entidade = cursoRepository.getReferenceById(id);
+        updateDate(entidade, obj);
+        return cursoRepository.save(entidade);
+    }
+
+    private void updateDate(Curso entidade, Curso obj){
+        entidade.setId(obj.getId());
+        entidade.setNome(obj.getNome());
+        entidade.setDataDeConclusao(obj.getDataDeConclusao());
+    }
 }

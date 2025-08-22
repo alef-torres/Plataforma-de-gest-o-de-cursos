@@ -1,11 +1,14 @@
 package com.desafio.maisPraTi.desafio.resources;
 
 import com.desafio.maisPraTi.desafio.entities.Aluno;
+import com.desafio.maisPraTi.desafio.entities.Curso;
 import com.desafio.maisPraTi.desafio.services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -36,6 +39,29 @@ public class AlunoResource {
     @PutMapping(value = "/{id}")
     public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno obj){
         obj = alunoService.update(id, obj);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @PostMapping
+    public ResponseEntity<Aluno> insert(@RequestBody Aluno obj) {
+        obj = alunoService.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
+    }
+
+    // Adicionar curso ao aluno (recebendo Curso diretamente)
+    @PostMapping("/{alunoId}/cursos")
+    public ResponseEntity<Aluno> adicionarCurso(@PathVariable Long alunoId,
+                                                @RequestBody Curso curso) {
+        Aluno aluno = alunoService.adicionarCurso(alunoId, curso.getId());
+        return ResponseEntity.ok(aluno);
+    }
+
+    // Remover curso do aluno
+    @DeleteMapping("/{alunoId}/cursos")
+    public ResponseEntity<Aluno> removerCurso(@PathVariable Long alunoId,
+                                              @RequestBody Curso curso) {
+        Aluno aluno = alunoService.removerCurso(alunoId, curso.getId());
+        return ResponseEntity.ok(aluno);
     }
 }

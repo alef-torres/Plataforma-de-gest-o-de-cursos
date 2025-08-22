@@ -190,4 +190,5 @@ public class Aluno implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
