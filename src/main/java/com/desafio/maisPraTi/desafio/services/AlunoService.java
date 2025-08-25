@@ -44,10 +44,6 @@ public class AlunoService {
     }
 
     private void updateData(Aluno entidade, Aluno obj) {
-        entidade.setPrimeiroNome(obj.getPrimeiroNome());
-        entidade.setUltimoNome(obj.getUltimoNome());
-        entidade.setDataNascimento(obj.getDataNascimento());
-        entidade.setCpf(obj.getCpf());
         entidade.setGenero(obj.getGenero());
         entidade.setEmail(obj.getEmail());
         entidade.setCep(obj.getCep());
@@ -62,11 +58,9 @@ public class AlunoService {
 
     @Transactional
     public Aluno adicionarCurso(Long alunoId, Long cursoId) {
-        Aluno aluno = alunoRepository.findById(alunoId)
-                .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+        Aluno aluno = alunoRepository.findById(alunoId).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
 
-        Curso curso = cursoRepository.findById(cursoId)
-                .orElseThrow(() -> new RuntimeException("Curso não encontrado"));
+        Curso curso = cursoRepository.findById(cursoId).orElseThrow(() -> new RuntimeException("Curso não encontrado"));
 
         aluno.getCursos().add(curso);
         return alunoRepository.save(aluno);

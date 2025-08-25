@@ -1,5 +1,8 @@
 package com.desafio.maisPraTi.desafio.model.entities;
 
+import com.desafio.maisPraTi.desafio.model.entities.valueobject.Cpf;
+import com.desafio.maisPraTi.desafio.model.entities.valueobject.DataNascimento;
+import com.desafio.maisPraTi.desafio.model.entities.valueobject.Email;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,10 +19,10 @@ public class Aluno implements Serializable {
     private Long id;
     private String primeiroNome;
     private String ultimoNome;
-    private String dataNascimento;
-    private String cpf;
+    private DataNascimento dataNascimento;
+    private Cpf cpf;
     private String genero;
-    private String email;
+    private Email email;
     private String cep;
     private String pais;
     private String rua;
@@ -37,7 +40,7 @@ public class Aluno implements Serializable {
     public Aluno() {
     }
 
-    public Aluno(String estado, String cidade, String complemento, String numero, String bairro, String rua, String pais, String cep, String email, String genero, String cpf, String dataNascimento, String ultimoNome, String primeiroNome, Long id) {
+    public Aluno(String estado, String cidade, String complemento, String numero, String bairro, String rua, String pais, String cep, Email email, String genero, Cpf cpf, DataNascimento dataNascimento, String ultimoNome, String primeiroNome, Long id) {
         this.estado = estado;
         this.cidade = cidade;
         this.complemento = complemento;
@@ -59,10 +62,6 @@ public class Aluno implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getPrimeiroNome() {
         return primeiroNome;
     }
@@ -79,19 +78,19 @@ public class Aluno implements Serializable {
         this.ultimoNome = ultimoNome;
     }
 
-    public String getDataNascimento() {
+    public DataNascimento getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(DataNascimento dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
     public String getCpf() {
-        return cpf;
+        return cpf.getNumero();
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Cpf cpf) {
         this.cpf = cpf;
     }
 
@@ -103,11 +102,11 @@ public class Aluno implements Serializable {
         this.genero = genero;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
 
